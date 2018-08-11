@@ -10,7 +10,7 @@ npm i -S remark-unwrap-images
 
 ## Usage
 
-```
+```js
 const remark = require('remark')
 const unwrapImages = require('remark-unwrap-images')
 const html = require('remark-html')
