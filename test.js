@@ -4,7 +4,7 @@ const html = require('remark-html')
 
 const unwrapImages = require('.')
 
-const markdown = `
+const image = `
 ![hi](there.png)
 `
 
@@ -12,7 +12,20 @@ test('unwraps images', t => {
   const { contents } = remark()
     .use(unwrapImages)
     .use(html)
-    .processSync(markdown)
+    .processSync(image)
+
+  t.snapshot(contents)
+})
+
+const linkImage = `
+[![hi](there.png)](#remark)
+`
+
+test('supports links', t => {
+  const { contents } = remark()
+    .use(unwrapImages)
+    .use(html)
+    .processSync(linkImage)
 
   t.snapshot(contents)
 })
