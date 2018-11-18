@@ -8,7 +8,7 @@
     "index.js"
   ],
   "scripts": {
-    "test": "ava"
+    "test": "ava -v"
   },
   "keywords": [
     "remark",
