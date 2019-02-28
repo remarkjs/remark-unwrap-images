@@ -1,4 +1,4 @@
-# remark-unwrap-images [![Build Status](https://travis-ci.org/johno/remark-unwrap-images.svg?branch=master)](https://travis-ci.org/johno/remark-unwrap-images)
+# remark-unwrap-images [![Build Status](https://travis-ci.org/remarkjs/remark-unwrap-images.svg?branch=master)](https://travis-ci.org/remarkjs/remark-unwrap-images)
 
 Remark plugin to remove wrapping paragraph tag for images.
 
