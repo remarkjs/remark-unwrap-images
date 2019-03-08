@@ -10,10 +10,8 @@ module.exports = () => tree =>
     if (parent.children.length === 1) {
       const firstChild = parent.children[0]
 
-      parent.type = firstChild.type
-      parent.title = firstChild.title
-      parent.url = firstChild.url
-      parent.alt = firstChild.alt
-      parent.children = firstChild.children
+      for (const key in firstChild) {
+        parent[key] = firstChild[key]
+      }
     }
   })

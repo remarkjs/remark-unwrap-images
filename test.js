@@ -42,6 +42,5 @@ test('supports image references', t => {
     .use(html)
     .processSync(referenceImage)
 
-  t.notRegex(contents, /<p>/)
   t.snapshot(contents)
 })
