@@ -1,6 +1,6 @@
 {
   "name": "remark-unwrap-images",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "license": "MIT",
   "repository": "johno/remark-unwrap-images",
   "description": "Unwrap images so they're not wrapped by a paragraph node",
