@@ -29,3 +29,18 @@ test('supports links', t => {
 
   t.snapshot(contents)
 })
+
+const referenceImage = `
+![hi][image]
+
+[image]: kitten.png
+`
+
+test('supports image references', t => {
+  const { contents } = remark()
+    .use(unwrapImages)
+    .use(html)
+    .processSync(referenceImage)
+
+  t.snapshot(contents)
+})

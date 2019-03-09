@@ -21,6 +21,6 @@
   "devDependencies": {
     "ava": "^0.25.0",
     "remark": "^10.0.1",
-    "remark-html": "^8.0.0"
+    "remark-html": "^9.0.0"
   }
 }
