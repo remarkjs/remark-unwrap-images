@@ -46,7 +46,7 @@ remark()
 
 Now, running `node example` yields:
 
-```markdown
+```html
 <img src="there.png" alt="hi">
 ```
 
