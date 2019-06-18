@@ -55,6 +55,8 @@ Now, running `node example` yields:
 #### `remark().use(unwrapImages)`
 
 Remove the wrapping paragraph for images.
+Supports multiple images, white space around images, and images in links as
+well.
 
 ## Contribute
 
