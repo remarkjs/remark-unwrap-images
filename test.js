@@ -11,7 +11,17 @@ test('remark-unwrap-images', function(t) {
       .processSync('![hi](there.png)')
       .toString(),
       '<img src="there.png" alt="hi">\n',
-    'should unwraps images'
+    'should unwrap images'
+  )
+
+  t.equal(
+    remark()
+      .use(unwrap)
+      .use(html)
+      .processSync('some text ![and](and.png) an image')
+      .toString(),
+      '<p>some text <img src="and.png" alt="and"> an image</p>\n',
+    'should not unwrap images next to other content'
   )
 
   t.equal(

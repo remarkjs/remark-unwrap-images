@@ -26,11 +26,20 @@
     "unist-util-visit-parents": "^2.0.1"
   },
   "devDependencies": {
+    "nyc": "^14.0.0",
     "remark": "^10.0.1",
     "remark-html": "^9.0.0",
     "tape": "^4.0.0"
   },
   "scripts": {
-    "test": "node test"
+    "test-api": "node test",
+    "test-coverage": "nyc --reporter lcov tape test.js",
+    "test": "npm run test-coverage"
+  },
+  "nyc": {
+    "check-coverage": true,
+    "lines": 100,
+    "functions": 100,
+    "branches": 100
   }
 }
