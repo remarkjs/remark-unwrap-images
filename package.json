@@ -17,7 +17,9 @@
   "author": "John Otander <johnotander@gmail.com> (https://johno.com)",
   "contributors": [
     "John Otander <johnotander@gmail.com> (https://johno.com)",
-    "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)"
+    "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)",
+    "Brent Jackson <jxnblk@gmail.com>",
+    "Michele Bertoli <michele@berto.li>"
   ],
   "files": [
     "index.js"
