@@ -23,7 +23,8 @@
     "index.js"
   ],
   "dependencies": {
-    "unist-util-visit-parents": "^2.0.1"
+    "hast-util-whitespace": "^1.0.0",
+    "unist-util-visit": "^1.4.0"
   },
   "devDependencies": {
     "nyc": "^14.0.0",
