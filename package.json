@@ -1,7 +1,7 @@
 {
   "name": "remark-unwrap-images",
   "version": "0.2.0",
-  "description": "Unwrap images so they're not wrapped by a paragraph node",
+  "description": "remark plugin to remove the wrapping paragraph for images",
   "license": "MIT",
   "keywords": [
     "unified",
