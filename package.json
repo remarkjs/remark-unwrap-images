@@ -1,19 +1,26 @@
 {
   "name": "remark-unwrap-images",
   "version": "0.2.0",
-  "license": "MIT",
-  "repository": "johno/remark-unwrap-images",
   "description": "Unwrap images so they're not wrapped by a paragraph node",
+  "license": "MIT",
+  "keywords": [
+    "unified",
+    "remark",
+    "plugin",
+    "mdast",
+    "markdown",
+    "image",
+    "unwrap"
+  ],
+  "repository": "remarkjs/remark-unwrap-images",
+  "bugs": "https://github.com/remarkjs/remark-unwrap-images/issues",
+  "author": "John Otander <johnotander@gmail.com> (https://johno.com)",
+  "contributors": [
+    "John Otander <johnotander@gmail.com> (https://johno.com)",
+    "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)"
+  ],
   "files": [
     "index.js"
-  ],
-  "scripts": {
-    "test": "ava -v"
-  },
-  "keywords": [
-    "remark",
-    "util",
-    "image"
   ],
   "dependencies": {
     "unist-util-visit-parents": "^2.0.1"
@@ -22,5 +29,8 @@
     "ava": "^0.25.0",
     "remark": "^10.0.1",
     "remark-html": "^9.0.0"
+  },
+  "scripts": {
+    "test": "ava -v"
   }
 }
