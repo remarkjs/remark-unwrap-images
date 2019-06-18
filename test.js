@@ -1,46 +1,39 @@
-const test = require('ava')
-const remark = require('remark')
-const html = require('remark-html')
+var remark = require('remark')
+var html = require('remark-html')
+var test = require('tape')
+var unwrap = require('.')
 
-const unwrapImages = require('.')
+test('remark-unwrap-images', function(t) {
+  t.equal(
+    remark()
+      .use(unwrap)
+      .use(html)
+      .processSync('![hi](there.png)')
+      .toString(),
+      '<img src="there.png" alt="hi">\n',
+    'should unwraps images'
+  )
 
-const image = `
-![hi](there.png)
-`
+  t.equal(
+    remark()
+      .use(unwrap)
+      .use(html)
+      .processSync('[![hi](there.png)](#remark)')
+      .toString(),
+      '<a href="#remark"><img src="there.png" alt="hi"></a>\n',
+    'should supports links'
+  )
 
-test('unwraps images', t => {
-  const { contents } = remark()
-    .use(unwrapImages)
-    .use(html)
-    .processSync(image)
 
-  t.snapshot(contents)
-})
+  t.equal(
+    remark()
+      .use(unwrap)
+      .use(html)
+      .processSync('![hi][image]\n\n[image]: kitten.png')
+      .toString(),
+      '<img src="kitten.png" alt="hi">\n',
+    'should supports image references'
+  )
 
-const linkImage = `
-[![hi](there.png)](#remark)
-`
-
-test('supports links', t => {
-  const { contents } = remark()
-    .use(unwrapImages)
-    .use(html)
-    .processSync(linkImage)
-
-  t.snapshot(contents)
-})
-
-const referenceImage = `
-![hi][image]
-
-[image]: kitten.png
-`
-
-test('supports image references', t => {
-  const { contents } = remark()
-    .use(unwrapImages)
-    .use(html)
-    .processSync(referenceImage)
-
-  t.snapshot(contents)
+  t.end()
 })
