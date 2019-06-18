@@ -1,7 +1,7 @@
 const visit = require('unist-util-visit-parents')
 
 module.exports = () => tree =>
-  visit(tree, [ 'image', 'imageReference' ], (node, ancestors) => {
+  visit(tree, ['image', 'imageReference'], (node, ancestors) => {
     const parent = ancestors
       .slice()
       .reverse()

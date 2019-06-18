@@ -10,7 +10,7 @@ test('remark-unwrap-images', function(t) {
       .use(html)
       .processSync('![hi](there.png)')
       .toString(),
-      '<img src="there.png" alt="hi">\n',
+    '<img src="there.png" alt="hi">\n',
     'should unwrap images'
   )
 
@@ -20,7 +20,7 @@ test('remark-unwrap-images', function(t) {
       .use(html)
       .processSync('some text ![and](and.png) an image')
       .toString(),
-      '<p>some text <img src="and.png" alt="and"> an image</p>\n',
+    '<p>some text <img src="and.png" alt="and"> an image</p>\n',
     'should not unwrap images next to other content'
   )
 
@@ -30,10 +30,9 @@ test('remark-unwrap-images', function(t) {
       .use(html)
       .processSync('[![hi](there.png)](#remark)')
       .toString(),
-      '<a href="#remark"><img src="there.png" alt="hi"></a>\n',
+    '<a href="#remark"><img src="there.png" alt="hi"></a>\n',
     'should supports links'
   )
-
 
   t.equal(
     remark()
@@ -41,7 +40,7 @@ test('remark-unwrap-images', function(t) {
       .use(html)
       .processSync('![hi][image]\n\n[image]: kitten.png')
       .toString(),
-      '<img src="kitten.png" alt="hi">\n',
+    '<img src="kitten.png" alt="hi">\n',
     'should supports image references'
   )
 
