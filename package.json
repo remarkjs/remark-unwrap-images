@@ -28,8 +28,10 @@
   "devDependencies": {
     "nyc": "^14.0.0",
     "prettier": "^1.0.0",
-    "remark": "^10.0.1",
+    "remark": "^10.0.0",
+    "remark-cli": "^6.0.0",
     "remark-html": "^9.0.0",
+    "remark-preset-wooorm": "^5.0.0",
     "tape": "^4.0.0",
     "xo": "^0.24.0"
   },
@@ -59,5 +61,10 @@
     "rules": {
       "guard-for-in": "off"
     }
+  },
+  "remarkConfig": {
+    "plugins": [
+      "preset-wooorm"
+    ]
   }
 }
