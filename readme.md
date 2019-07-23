@@ -58,6 +58,12 @@ Remove the wrapping paragraph for images.
 Supports multiple images, white space around images, and images in links as
 well.
 
+## Security
+
+Use of `remark-unwrap-images` does not involve [**rehype**][rehype]
+([**hast**][hast]) or user content, it only removes some existing nodes, so
+there are no openings for [cross-site scripting (XSS)][xss] attacks.
+
 ## Contribute
 
 See [`contributing.md`][contributing] in [`remarkjs/.github`][health] for ways
@@ -113,3 +119,9 @@ abide by its terms.
 [license]: license
 
 [remark]: https://github.com/remarkjs/remark
+
+[xss]: https://en.wikipedia.org/wiki/Cross-site_scripting
+
+[rehype]: https://github.com/rehypejs/rehype
+
+[hast]: https://github.com/syntax-tree/hast
