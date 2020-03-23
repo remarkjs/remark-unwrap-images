@@ -3,13 +3,9 @@ var html = require('remark-html')
 var test = require('tape')
 var unwrap = require('.')
 
-test('remark-unwrap-images', function(t) {
+test('remark-unwrap-images', function (t) {
   t.equal(
-    remark()
-      .use(unwrap)
-      .use(html)
-      .processSync('![hi](there.png)')
-      .toString(),
+    remark().use(unwrap).use(html).processSync('![hi](there.png)').toString(),
     '<img src="there.png" alt="hi">\n',
     'should unwrap images'
   )
@@ -35,21 +31,13 @@ test('remark-unwrap-images', function(t) {
   )
 
   t.equal(
-    remark()
-      .use(unwrap)
-      .use(html)
-      .processSync('some text')
-      .toString(),
+    remark().use(unwrap).use(html).processSync('some text').toString(),
     '<p>some text</p>\n',
     'should not unwrap if there are no images'
   )
 
   t.equal(
-    remark()
-      .use(unwrap)
-      .use(html)
-      .processSync('[](#remark)')
-      .toString(),
+    remark().use(unwrap).use(html).processSync('[](#remark)').toString(),
     '<p><a href="#remark"></a></p>\n',
     'should not unwrap if there are no images in links'
   )

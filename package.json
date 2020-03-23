@@ -34,14 +34,14 @@
     "unist-util-visit": "^1.4.0"
   },
   "devDependencies": {
-    "nyc": "^14.0.0",
-    "prettier": "^1.0.0",
+    "nyc": "^15.0.0",
+    "prettier": "^2.0.0",
     "remark": "^11.0.0",
     "remark-cli": "^7.0.0",
     "remark-html": "^10.0.0",
     "remark-preset-wooorm": "^6.0.0",
     "tape": "^4.0.0",
-    "xo": "^0.24.0"
+    "xo": "^0.28.0"
   },
   "scripts": {
     "format": "prettier --write \"**/*.js\" && xo --fix",
