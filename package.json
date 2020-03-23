@@ -14,6 +14,10 @@
   ],
   "repository": "remarkjs/remark-unwrap-images",
   "bugs": "https://github.com/remarkjs/remark-unwrap-images/issues",
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/unified"
+  },
   "author": "John Otander <johnotander@gmail.com> (https://johno.com)",
   "contributors": [
     "John Otander <johnotander@gmail.com> (https://johno.com)",
