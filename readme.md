@@ -76,7 +76,7 @@ abide by its terms.
 
 ## License
 
-[MIT][license] © Compositor and ZEIT, Inc.
+[MIT][license] © Compositor and Vercel, Inc.
 
 <!-- Definitions -->
 
