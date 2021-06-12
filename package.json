@@ -26,7 +26,9 @@
     "Brent Jackson <jxnblk@gmail.com>",
     "Michele Bertoli <michele@berto.li>"
   ],
+  "types": "types/index.d.ts",
   "files": [
+    "types/index.d.ts",
     "index.js"
   ],
   "dependencies": {
@@ -34,6 +36,7 @@
     "unist-util-visit": "^2.0.0"
   },
   "devDependencies": {
+    "dtslint": "^4.1.0",
     "nyc": "^15.0.0",
     "prettier": "^2.0.0",
     "remark": "^13.0.0",
@@ -44,10 +47,11 @@
     "xo": "^0.37.0"
   },
   "scripts": {
-    "format": "remark . -qfo && prettier . -w --loglevel warn && xo --fix",
+    "format": "remark . -qfo --ignore-pattern test/ && prettier . -w --loglevel warn && xo --fix --ignore types",
     "test-api": "node test",
     "test-coverage": "nyc --reporter lcov tape test.js",
-    "test": "npm run format && npm run test-coverage"
+    "test-types": "dtslint types",
+    "test": "npm run format && npm run test-coverage && npm run test-types"
   },
   "nyc": {
     "check-coverage": true,
