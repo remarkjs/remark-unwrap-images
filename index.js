@@ -1,10 +1,22 @@
+/**
+ * @typedef {import('mdast').Root} Root
+ * @typedef {import('mdast').Paragraph} Paragraph
+ * @typedef {import('mdast').Link} Link
+ * @typedef {import('mdast').LinkReference} LinkReference
+ */
+
 import {visit, SKIP} from 'unist-util-visit'
 import {whitespace} from 'hast-util-whitespace'
 
-const unknown = null
-const containsImage = true
-const containsOther = false
+const unknown = 1
+const containsImage = 2
+const containsOther = 3
 
+/**
+ * Plugin to to remove the wrapping paragraph for images.
+ *
+ * @type {import('unified').Plugin<void[], Root>}
+ */
 export default function remarkUnwrapImages() {
   return (tree) => {
     visit(tree, 'paragraph', (node, index, parent) => {
@@ -20,7 +32,13 @@ export default function remarkUnwrapImages() {
   }
 }
 
+/**
+ * @param {Paragraph|Link|LinkReference} node
+ * @param {boolean} [inLink]
+ * @returns {1|2|3}
+ */
 function applicable(node, inLink) {
+  /** @type {1|2|3} */
   let image = unknown
   let index = -1
 
