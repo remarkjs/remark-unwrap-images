@@ -1,5 +1,5 @@
-import visit from 'unist-util-visit'
-import whiteSpace from 'hast-util-whitespace'
+import {visit, SKIP} from 'unist-util-visit'
+import {whitespace} from 'hast-util-whitespace'
 
 var unknown = null
 var containsImage = true
@@ -18,7 +18,7 @@ function transform(tree) {
 function onparagraph(node, index, parent) {
   if (applicable(node) === containsImage) {
     splice.apply(parent.children, [index, 1].concat(node.children))
-    return [visit.SKIP, index]
+    return [SKIP, index]
   }
 }
 
@@ -33,7 +33,7 @@ function applicable(node, inLink) {
   while (++index < length) {
     child = children[index]
 
-    if (whiteSpace(child)) {
+    if (whitespace(child)) {
       // White space is fine.
     } else if (child.type === 'image' || child.type === 'imageReference') {
       image = containsImage

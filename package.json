@@ -34,8 +34,8 @@
     "index.js"
   ],
   "dependencies": {
-    "hast-util-whitespace": "^1.0.0",
-    "unist-util-visit": "^2.0.0"
+    "hast-util-whitespace": "^2.0.0",
+    "unist-util-visit": "^4.0.0"
   },
   "devDependencies": {
     "c8": "^7.0.0",
