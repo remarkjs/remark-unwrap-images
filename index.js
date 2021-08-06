@@ -1,37 +1,31 @@
 import {visit, SKIP} from 'unist-util-visit'
 import {whitespace} from 'hast-util-whitespace'
 
-var unknown = null
-var containsImage = true
-var containsOther = false
-
-var splice = [].splice
+const unknown = null
+const containsImage = true
+const containsOther = false
 
 export default function remarkUnwrapImages() {
-  return transform
-}
-
-function transform(tree) {
-  visit(tree, 'paragraph', onparagraph)
-}
-
-function onparagraph(node, index, parent) {
-  if (applicable(node) === containsImage) {
-    splice.apply(parent.children, [index, 1].concat(node.children))
-    return [SKIP, index]
+  return (tree) => {
+    visit(tree, 'paragraph', (node, index, parent) => {
+      if (
+        parent &&
+        typeof index === 'number' &&
+        applicable(node) === containsImage
+      ) {
+        parent.children.splice(index, 1, ...node.children)
+        return [SKIP, index]
+      }
+    })
   }
 }
 
 function applicable(node, inLink) {
-  var image = unknown
-  var children = node.children
-  var length = children.length
-  var index = -1
-  var child
-  var linkResult
+  let image = unknown
+  let index = -1
 
-  while (++index < length) {
-    child = children[index]
+  while (++index < node.children.length) {
+    const child = node.children[index]
 
     if (whitespace(child)) {
       // White space is fine.
@@ -41,7 +35,7 @@ function applicable(node, inLink) {
       !inLink &&
       (child.type === 'link' || child.type === 'linkReference')
     ) {
-      linkResult = applicable(child, true)
+      const linkResult = applicable(child, true)
 
       if (linkResult === containsOther) {
         return containsOther

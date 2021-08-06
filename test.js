@@ -3,7 +3,7 @@ import {remark} from 'remark'
 import remarkHtml from 'remark-html'
 import remarkUnwrapImages from './index.js'
 
-test('remarkUnwrapImages', function (t) {
+test('remarkUnwrapImages', (t) => {
   t.equal(
     remark()
       .use(remarkUnwrapImages)
