@@ -18,6 +18,9 @@ No change is needed: it works exactly the same now as it did before!
 
 ## Install
 
+This package is [ESM only](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c):
+Node 12+ is needed to use it and it must be `import`ed instead of `require`d.
+
 [npm][]:
 
 ```sh
@@ -33,19 +36,21 @@ Imagine section titles and URLs a bit longer though.
 ![hi](there.png)
 ```
 
-And our script, `example.js`, looks as follows:
+And our module, `example.js`, looks as follows:
 
 ```js
-var vfile = require('to-vfile')
-var remark = require('remark')
-var html = require('remark-html')
-var unwrapImages = require('remark-unwrap-images')
+import {readSync} from 'to-vfile'
+import {remark} from 'remark'
+import remarkHtml from 'remark-html'
+import remarkUnwrapImages from 'remark-unwrap-images'
+
+const file = readSync('example.md')
 
 remark()
-  .use(unwrapImages)
-  .use(html)
-  .process(vfile.readSync('example.md'), function(err, file) {
-    if (err) throw err
+  .use(remarkUnwrapImages)
+  .use(remarkHtml)
+  .process(file)
+  .then((file) => {
     console.log(String(file))
   })
 ```
@@ -58,7 +63,10 @@ Now, running `node example` yields:
 
 ## API
 
-#### `remark().use(unwrapImages)`
+This package exports no identifiers.
+The default export is `remarkUnwrapImages`.
+
+#### `unified().use(remarkUnwrapImages)`
 
 Remove the wrapping paragraph for images.
 Supports multiple images, white space around images, and images in links as
