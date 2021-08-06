@@ -1,7 +1,5 @@
-var visit = require('unist-util-visit')
-var whiteSpace = require('hast-util-whitespace')
-
-module.exports = unwrapImages
+import visit from 'unist-util-visit'
+import whiteSpace from 'hast-util-whitespace'
 
 var unknown = null
 var containsImage = true
@@ -9,7 +7,7 @@ var containsOther = false
 
 var splice = [].splice
 
-function unwrapImages() {
+export default function remarkUnwrapImages() {
   return transform
 }
 

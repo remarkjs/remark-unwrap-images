@@ -1,19 +1,23 @@
-var remark = require('remark')
-var html = require('remark-html')
-var test = require('tape')
-var unwrap = require('.')
+import test from 'tape'
+import remark from 'remark'
+import remarkHtml from 'remark-html'
+import remarkUnwrapImages from './index.js'
 
-test('remark-unwrap-images', function (t) {
+test('remarkUnwrapImages', function (t) {
   t.equal(
-    remark().use(unwrap).use(html).processSync('![hi](there.png)').toString(),
+    remark()
+      .use(remarkUnwrapImages)
+      .use(remarkHtml)
+      .processSync('![hi](there.png)')
+      .toString(),
     '<img src="there.png" alt="hi">\n',
     'should unwrap images'
   )
 
   t.equal(
     remark()
-      .use(unwrap)
-      .use(html)
+      .use(remarkUnwrapImages)
+      .use(remarkHtml)
       .processSync('![alpha](alpha.png) ![bravo](bravo.png)')
       .toString(),
     '<img src="alpha.png" alt="alpha">\n \n<img src="bravo.png" alt="bravo">\n',
@@ -22,8 +26,8 @@ test('remark-unwrap-images', function (t) {
 
   t.equal(
     remark()
-      .use(unwrap)
-      .use(html)
+      .use(remarkUnwrapImages)
+      .use(remarkHtml)
       .processSync('some text ![and](and.png) an image')
       .toString(),
     '<p>some text <img src="and.png" alt="and"> an image</p>\n',
@@ -31,21 +35,29 @@ test('remark-unwrap-images', function (t) {
   )
 
   t.equal(
-    remark().use(unwrap).use(html).processSync('some text').toString(),
+    remark()
+      .use(remarkUnwrapImages)
+      .use(remarkHtml)
+      .processSync('some text')
+      .toString(),
     '<p>some text</p>\n',
     'should not unwrap if there are no images'
   )
 
   t.equal(
-    remark().use(unwrap).use(html).processSync('[](#remark)').toString(),
+    remark()
+      .use(remarkUnwrapImages)
+      .use(remarkHtml)
+      .processSync('[](#remark)')
+      .toString(),
     '<p><a href="#remark"></a></p>\n',
     'should not unwrap if there are no images in links'
   )
 
   t.equal(
     remark()
-      .use(unwrap)
-      .use(html)
+      .use(remarkUnwrapImages)
+      .use(remarkHtml)
       .processSync('[![hi](there.png)](#remark)')
       .toString(),
     '<a href="#remark"><img src="there.png" alt="hi"></a>\n',
@@ -54,8 +66,8 @@ test('remark-unwrap-images', function (t) {
 
   t.equal(
     remark()
-      .use(unwrap)
-      .use(html)
+      .use(remarkUnwrapImages)
+      .use(remarkHtml)
       .processSync('[![hi](there.png)](#remark)!')
       .toString(),
     '<p><a href="#remark"><img src="there.png" alt="hi"></a>!</p>\n',
@@ -64,8 +76,8 @@ test('remark-unwrap-images', function (t) {
 
   t.equal(
     remark()
-      .use(unwrap)
-      .use(html)
+      .use(remarkUnwrapImages)
+      .use(remarkHtml)
       .processSync('[![Hello](there.png), world](#remark)')
       .toString(),
     '<p><a href="#remark"><img src="there.png" alt="Hello">, world</a></p>\n',
@@ -74,8 +86,8 @@ test('remark-unwrap-images', function (t) {
 
   t.equal(
     remark()
-      .use(unwrap)
-      .use(html)
+      .use(remarkUnwrapImages)
+      .use(remarkHtml)
       .processSync('![hi][image]\n\n[image]: kitten.png')
       .toString(),
     '<img src="kitten.png" alt="hi">\n',
