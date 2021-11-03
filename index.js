@@ -13,7 +13,7 @@ const containsImage = 2
 const containsOther = 3
 
 /**
- * Plugin to to remove the wrapping paragraph for images.
+ * Plugin to remove the wrapping paragraph for images.
  *
  * @type {import('unified').Plugin<void[], Root>}
  */
