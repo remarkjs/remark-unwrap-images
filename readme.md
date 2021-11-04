@@ -39,7 +39,7 @@ This is a remark plugin that transforms mdast.
 ## When should I use this?
 
 This project can make it simpler to style images with CSS, for example
-displaying them at the full available with, because paragraph styles no longer
+displaying them at the full available width, because paragraph styles no longer
 interfere with them.
 
 ## Install
