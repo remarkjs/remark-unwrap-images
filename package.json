@@ -1,6 +1,6 @@
 {
   "name": "remark-unwrap-images",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "remark plugin to remove the wrapping paragraph for images",
   "license": "MIT",
   "keywords": [
