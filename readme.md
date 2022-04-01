@@ -51,17 +51,17 @@ In Node.js (version 12.20+, 14.14+, or 16.0+), install with [npm][]:
 npm install remark-unwrap-images
 ```
 
-In Deno with [Skypack][]:
+In Deno with [`esm.sh`][esmsh]:
 
 ```js
-import remarkUnwrapImages from 'https://cdn.skypack.dev/remark-unwrap-images@3?dts'
+import remarkUnwrapImages from 'https://esm.sh/remark-unwrap-images@3'
 ```
 
-In browsers with [Skypack][]:
+In browsers with [`esm.sh`][esmsh]:
 
 ```html
 <script type="module">
-  import remarkUnwrapImages from 'https://cdn.skypack.dev/remark-unwrap-images@3?min'
+  import remarkUnwrapImages from 'https://esm.sh/remark-unwrap-images@3?bundle'
 </script>
 ```
 
@@ -186,7 +186,7 @@ abide by its terms.
 
 [npm]: https://docs.npmjs.com/cli/install
 
-[skypack]: https://www.skypack.dev
+[esmsh]: https://esm.sh
 
 [health]: https://github.com/remarkjs/.github
 
