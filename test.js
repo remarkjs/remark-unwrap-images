@@ -24,6 +24,13 @@ test('remarkUnwrapImages', (t) => {
     'should unwrap multiple images'
   )
 
+  const processor = remark().use(remarkUnwrapImages)
+  t.deepEqual(
+    processor.runSync(processor.parse('![alpha](alpha.png) ![bravo](bravo.png)')),
+    { type: 'root', children: [ { type: 'image', title: null, url: 'alpha.png', alt: 'alpha', position: { start: { line: 1, column: 1, offset: 0 }, end: { line: 1, column: 20, offset: 19 } } }, { type: 'image', title: null, url: 'bravo.png', alt: 'bravo', position: { start: { line: 1, column: 21, offset: 20 }, end: { line: 1, column: 40, offset: 39 } } } ], position: { start: { line: 1, column: 1, offset: 0 }, end: { line: 1, column: 40, offset: 39 } } },
+    'should not put text nodes in root'
+  )
+
   t.equal(
     remark()
       .use(remarkUnwrapImages)
