@@ -30,12 +30,6 @@ This package is a [unified][] ([remark][]) plugin that searches for paragraphs
 which contain only images (possibly in links) and nothing else, and then remove
 those surrounding paragraphs.
 
-**unified** is a project that transforms content with abstract syntax trees
-(ASTs).
-**remark** adds support for markdown to unified.
-**mdast** is the markdown AST that remark uses.
-This is a remark plugin that transforms mdast.
-
 ## When should I use this?
 
 This project can make it simpler to style images with CSS, for example
@@ -44,8 +38,8 @@ interfere with them.
 
 ## Install
 
-This package is [ESM only](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c).
-In Node.js (version 12.20+, 14.14+, or 16.0+), install with [npm][]:
+This package is [ESM only][esm].
+In Node.js (version 16+), install with [npm][]:
 
 ```sh
 npm install remark-unwrap-images
@@ -70,62 +64,74 @@ In browsers with [`esm.sh`][esmsh]:
 Say we have the following file `example.md`.
 
 ```markdown
-# Hello world
+# Saturn
 
-Lorem ipsum.
+Saturn is the sixth planet from the Sun and the second-largest in the Solar
+System, after Jupiter.
 
-![hi](there.png)
+![Saturn](//upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Saturn_during_Equinox.jpg/300px-Saturn_during_Equinox.jpg)
 ```
 
-And our module `example.js` looks as follows:
+…and a module `example.js`:
 
 ```js
-import {read} from 'to-vfile'
-import {remark} from 'remark'
-import remarkHtml from 'remark-html'
+import {unified} from 'unified'
+import rehypeStringify from 'rehype-stringify'
+import remarkParse from 'remark-parse'
+import remarkRehype from 'remark-rehype'
 import remarkUnwrapImages from 'remark-unwrap-images'
+import {read} from 'to-vfile'
 
-main()
+const file = await unified()
+  .use(remarkParse)
+  .use(remarkRehype)
+  .use(remarkUnwrapImages)
+  .use(rehypeStringify)
+  .process(await read('example.md'))
 
-async function main() {
-  const file = await remark()
-    .use(remarkUnwrapImages)
-    .use(remarkHtml)
-    .process(await read('example.md'))
-
-  console.log(String(file))
-}
+console.log(String(file))
 ```
 
-Now running `node example.js` yields:
+…then running `node example.js` yields:
 
 ```html
-<h1>Hello world</h1>
-<p>Lorem ipsum.</p>
-<img src="there.png" alt="hi">
+<h1>Saturn</h1>
+<p>Saturn is the sixth planet from the Sun and the second-largest in the Solar
+System, after Jupiter.</p>
+<p><img src="//upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Saturn_during_Equinox.jpg/300px-Saturn_during_Equinox.jpg" alt="Saturn"></p>
 ```
 
 ## API
 
 This package exports no identifiers.
-The default export is `remarkUnwrapImages`.
+The default export is [`remarkUnwrapImages`][api-remark-unwrap-images].
 
 #### `unified().use(remarkUnwrapImages)`
 
-Plugin to remove the wrapping paragraph for images.
-There are no options.
+Remove the wrapping paragraph for images.
+
+###### Parameters
+
+There are no parameters.
+
+###### Returns
+
+Transform ([`Transformer`][unified-transformer]).
 
 ## Types
 
 This package is fully typed with [TypeScript][].
-There are no extra exported types.
+It exports no additional types.
 
 ## Compatibility
 
-Projects maintained by the unified collective are compatible with all maintained
+Projects maintained by the unified collective are compatible with maintained
 versions of Node.js.
-As of now, that is Node.js 12.20+, 14.14+, and 16.0+.
-Our projects sometimes work with older versions, but this is not guaranteed.
+
+When we cut a new major release, we drop support for unmaintained versions of
+Node.
+This means we try to keep the current release line, `remark-unwrap-images@^3`,
+compatible with Node.js 12.
 
 This plugin works with `unified` version 6+ and `remark` version 7+.
 
@@ -133,7 +139,7 @@ This plugin works with `unified` version 6+ and `remark` version 7+.
 
 Use of `remark-unwrap-images` does not involve **[rehype][]** (**[hast][]**) or
 user content, it only removes some existing nodes, so there are no openings for
-[cross-site scripting (XSS)][xss] attacks.
+[cross-site scripting (XSS)][wiki-xss] attacks.
 
 ## Related
 
@@ -170,9 +176,9 @@ abide by its terms.
 
 [downloads]: https://www.npmjs.com/package/remark-unwrap-images
 
-[size-badge]: https://img.shields.io/bundlephobia/minzip/remark-unwrap-images.svg
+[size-badge]: https://img.shields.io/bundlejs/size/remark-unwrap-images
 
-[size]: https://bundlephobia.com/result?p=remark-unwrap-images
+[size]: https://bundlejs.com/?q=remark-unwrap-images
 
 [sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
 
@@ -186,26 +192,32 @@ abide by its terms.
 
 [npm]: https://docs.npmjs.com/cli/install
 
+[esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
+
 [esmsh]: https://esm.sh
 
 [health]: https://github.com/remarkjs/.github
 
-[contributing]: https://github.com/remarkjs/.github/blob/HEAD/contributing.md
+[contributing]: https://github.com/remarkjs/.github/blob/main/contributing.md
 
-[support]: https://github.com/remarkjs/.github/blob/HEAD/support.md
+[support]: https://github.com/remarkjs/.github/blob/main/support.md
 
-[coc]: https://github.com/remarkjs/.github/blob/HEAD/code-of-conduct.md
+[coc]: https://github.com/remarkjs/.github/blob/main/code-of-conduct.md
 
 [license]: license
 
-[remark]: https://github.com/remarkjs/remark
-
-[unified]: https://github.com/unifiedjs/unified
-
-[xss]: https://en.wikipedia.org/wiki/Cross-site_scripting
-
-[typescript]: https://www.typescriptlang.org
+[hast]: https://github.com/syntax-tree/hast
 
 [rehype]: https://github.com/rehypejs/rehype
 
-[hast]: https://github.com/syntax-tree/hast
+[remark]: https://github.com/remarkjs/remark
+
+[typescript]: https://www.typescriptlang.org
+
+[unified]: https://github.com/unifiedjs/unified
+
+[unified-transformer]: https://github.com/unifiedjs/unified#transformer
+
+[wiki-xss]: https://en.wikipedia.org/wiki/Cross-site_scripting
+
+[api-remark-unwrap-images]: #unifieduseremarkunwrapimages
