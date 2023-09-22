@@ -1,31 +1,37 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import {remark} from 'remark'
-import remarkHtml from 'remark-html'
+import rehypeStringify from 'rehype-stringify'
+import remarkParse from 'remark-parse'
+import remarkRehype from 'remark-rehype'
+import {unified} from 'unified'
 import remarkUnwrapImages from './index.js'
 
 test('remarkUnwrapImages', async function (t) {
   await t.test('should unwrap images', async function () {
     assert.equal(
       String(
-        await remark()
+        await unified()
+          .use(remarkParse)
           .use(remarkUnwrapImages)
-          .use(remarkHtml)
+          .use(remarkRehype)
+          .use(rehypeStringify)
           .process('![hi](there.png)')
       ),
-      '<img src="there.png" alt="hi">\n'
+      '<img src="there.png" alt="hi">'
     )
   })
 
   await t.test('should unwrap multiple images', async function () {
     assert.equal(
       String(
-        await remark()
+        await unified()
+          .use(remarkParse)
           .use(remarkUnwrapImages)
-          .use(remarkHtml)
+          .use(remarkRehype)
+          .use(rehypeStringify)
           .process('![alpha](alpha.png) ![bravo](bravo.png)')
       ),
-      '<img src="alpha.png" alt="alpha">\n \n<img src="bravo.png" alt="bravo">\n'
+      '<img src="alpha.png" alt="alpha">\n \n<img src="bravo.png" alt="bravo">'
     )
   })
 
@@ -34,12 +40,14 @@ test('remarkUnwrapImages', async function (t) {
     async function () {
       assert.equal(
         String(
-          await remark()
+          await unified()
+            .use(remarkParse)
             .use(remarkUnwrapImages)
-            .use(remarkHtml)
+            .use(remarkRehype)
+            .use(rehypeStringify)
             .process('some text ![and](and.png) an image')
         ),
-        '<p>some text <img src="and.png" alt="and"> an image</p>\n'
+        '<p>some text <img src="and.png" alt="and"> an image</p>'
       )
     }
   )
@@ -47,12 +55,14 @@ test('remarkUnwrapImages', async function (t) {
   await t.test('should not unwrap if there are no images', async function () {
     assert.equal(
       String(
-        await remark()
+        await unified()
+          .use(remarkParse)
           .use(remarkUnwrapImages)
-          .use(remarkHtml)
+          .use(remarkRehype)
+          .use(rehypeStringify)
           .process('some text')
       ),
-      '<p>some text</p>\n'
+      '<p>some text</p>'
     )
   })
 
@@ -61,12 +71,14 @@ test('remarkUnwrapImages', async function (t) {
     async function () {
       assert.equal(
         String(
-          await remark()
+          await unified()
+            .use(remarkParse)
             .use(remarkUnwrapImages)
-            .use(remarkHtml)
+            .use(remarkRehype)
+            .use(rehypeStringify)
             .process('[](#remark)')
         ),
-        '<p><a href="#remark"></a></p>\n'
+        '<p><a href="#remark"></a></p>'
       )
     }
   )
@@ -74,12 +86,14 @@ test('remarkUnwrapImages', async function (t) {
   await t.test('should supports links', async function () {
     assert.equal(
       String(
-        await remark()
+        await unified()
+          .use(remarkParse)
           .use(remarkUnwrapImages)
-          .use(remarkHtml)
+          .use(remarkRehype)
+          .use(rehypeStringify)
           .process('[![hi](there.png)](#remark)')
       ),
-      '<a href="#remark"><img src="there.png" alt="hi"></a>\n'
+      '<a href="#remark"><img src="there.png" alt="hi"></a>'
     )
   })
 
@@ -88,12 +102,14 @@ test('remarkUnwrapImages', async function (t) {
     async function () {
       assert.equal(
         String(
-          await remark()
+          await unified()
+            .use(remarkParse)
             .use(remarkUnwrapImages)
-            .use(remarkHtml)
+            .use(remarkRehype)
+            .use(rehypeStringify)
             .process('[![hi](there.png)](#remark)!')
         ),
-        '<p><a href="#remark"><img src="there.png" alt="hi"></a>!</p>\n'
+        '<p><a href="#remark"><img src="there.png" alt="hi"></a>!</p>'
       )
     }
   )
@@ -101,24 +117,28 @@ test('remarkUnwrapImages', async function (t) {
   await t.test('should not unwrap links with other content', async function () {
     assert.equal(
       String(
-        await remark()
+        await unified()
+          .use(remarkParse)
           .use(remarkUnwrapImages)
-          .use(remarkHtml)
+          .use(remarkRehype)
+          .use(rehypeStringify)
           .process('[![Hello](there.png), world](#remark)')
       ),
-      '<p><a href="#remark"><img src="there.png" alt="Hello">, world</a></p>\n'
+      '<p><a href="#remark"><img src="there.png" alt="Hello">, world</a></p>'
     )
   })
 
   await t.test('should supports image references', async function () {
     assert.equal(
       String(
-        await remark()
+        await unified()
+          .use(remarkParse)
           .use(remarkUnwrapImages)
-          .use(remarkHtml)
+          .use(remarkRehype)
+          .use(rehypeStringify)
           .process('![hi][image]\n\n[image]: kitten.png')
       ),
-      '<img src="kitten.png" alt="hi">\n'
+      '<img src="kitten.png" alt="hi">'
     )
   })
 })
