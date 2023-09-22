@@ -48,14 +48,14 @@ npm install remark-unwrap-images
 In Deno with [`esm.sh`][esmsh]:
 
 ```js
-import remarkUnwrapImages from 'https://esm.sh/remark-unwrap-images@3'
+import remarkUnwrapImages from 'https://esm.sh/remark-unwrap-images@4'
 ```
 
 In browsers with [`esm.sh`][esmsh]:
 
 ```html
 <script type="module">
-  import remarkUnwrapImages from 'https://esm.sh/remark-unwrap-images@3?bundle'
+  import remarkUnwrapImages from 'https://esm.sh/remark-unwrap-images@4?bundle'
 </script>
 ```
 
