@@ -7,6 +7,12 @@ import {unified} from 'unified'
 import remarkUnwrapImages from './index.js'
 
 test('remarkUnwrapImages', async function (t) {
+  await t.test('should expose the public api', async function () {
+    assert.deepEqual(Object.keys(await import('./index.js')).sort(), [
+      'default'
+    ])
+  })
+
   await t.test('should unwrap images', async function () {
     assert.equal(
       String(
