@@ -1,46 +1,19 @@
 {
-  "name": "remark-unwrap-images",
-  "version": "4.0.0",
-  "description": "remark plugin to remove the wrapping paragraph for images",
-  "license": "MIT",
-  "keywords": [
-    "image",
-    "markdown",
-    "mdast",
-    "plugin",
-    "remark",
-    "remark-plugin",
-    "unified",
-    "unwrap"
-  ],
-  "repository": "remarkjs/remark-unwrap-images",
-  "bugs": "https://github.com/remarkjs/remark-unwrap-images/issues",
-  "funding": {
-    "type": "opencollective",
-    "url": "https://opencollective.com/unified"
-  },
   "author": "John Otander <johnotander@gmail.com> (https://johno.com)",
+  "bugs": "https://github.com/remarkjs/remark-unwrap-images/issues",
   "contributors": [
-    "John Otander <johnotander@gmail.com> (https://johno.com)",
-    "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)",
     "Brent Jackson <jxnblk@gmail.com>",
+    "John Otander <johnotander@gmail.com> (https://johno.com)",
+    "José Luis Sandoval Alaguna <alagunasalahaddin@live.com> (https://uzmani.tech/)",
     "Michele Bertoli <michele@berto.li>",
-    "José Luis Sandoval Alaguna <alagunasalahaddin@live.com> (https://uzmani.tech/)"
-  ],
-  "sideEffects": false,
-  "type": "module",
-  "exports": "./index.js",
-  "files": [
-    "lib/",
-    "index.d.ts.map",
-    "index.d.ts",
-    "index.js"
+    "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)"
   ],
   "dependencies": {
     "@types/mdast": "^4.0.0",
     "hast-util-whitespace": "^3.0.0",
     "unist-util-visit": "^5.0.0"
   },
+  "description": "remark plugin to remove the wrapping paragraph for images",
   "devDependencies": {
     "@types/node": "^22.0.0",
     "c8": "^10.0.0",
@@ -56,14 +29,29 @@
     "unified": "^11.0.0",
     "xo": "^0.59.0"
   },
-  "scripts": {
-    "build": "tsc --build --clean && tsc --build && type-coverage",
-    "format": "remark . --frail --output --quiet && prettier . --log-level warn --write && xo --fix",
-    "prepack": "npm run build && npm run format",
-    "test": "npm run build && npm run format && npm run test-coverage",
-    "test-api": "node --conditions development test.js",
-    "test-coverage": "c8 --100 --reporter lcov npm run test-api"
+  "exports": "./index.js",
+  "files": [
+    "lib/",
+    "index.d.ts.map",
+    "index.d.ts",
+    "index.js"
+  ],
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/unified"
   },
+  "keywords": [
+    "image",
+    "markdown",
+    "mdast",
+    "plugin",
+    "remark-plugin",
+    "remark",
+    "unified",
+    "unwrap"
+  ],
+  "license": "MIT",
+  "name": "remark-unwrap-images",
   "prettier": {
     "bracketSpacing": false,
     "singleQuote": true,
@@ -77,12 +65,24 @@
       "remark-preset-wooorm"
     ]
   },
+  "repository": "remarkjs/remark-unwrap-images",
+  "scripts": {
+    "build": "tsc --build --clean && tsc --build && type-coverage",
+    "format": "remark . --frail --output --quiet && prettier . --log-level warn --write && xo --fix",
+    "prepack": "npm run build && npm run format",
+    "test-api": "node --conditions development test.js",
+    "test-coverage": "c8 --100 --reporter lcov npm run test-api",
+    "test": "npm run build && npm run format && npm run test-coverage"
+  },
+  "sideEffects": false,
   "typeCoverage": {
     "atLeast": 100,
     "detail": true,
     "ignoreCatch": true,
     "strict": true
   },
+  "type": "module",
+  "version": "4.0.0",
   "xo": {
     "prettier": true
   }
