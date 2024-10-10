@@ -12,17 +12,17 @@
 
 ## Contents
 
-*   [What is this?](#what-is-this)
-*   [When should I use this?](#when-should-i-use-this)
-*   [Install](#install)
-*   [Use](#use)
-*   [API](#api)
-*   [Types](#types)
-*   [Compatibility](#compatibility)
-*   [Security](#security)
-*   [Related](#related)
-*   [Contribute](#contribute)
-*   [License](#license)
+* [What is this?](#what-is-this)
+* [When should I use this?](#when-should-i-use-this)
+* [Install](#install)
+* [Use](#use)
+* [API](#api)
+* [Types](#types)
+* [Compatibility](#compatibility)
+* [Security](#security)
+* [Related](#related)
+* [Contribute](#contribute)
+* [License](#license)
 
 ## What is this?
 
@@ -143,10 +143,10 @@ user content, it only removes some existing nodes, so there are no openings for
 
 ## Related
 
-*   [`remark-images`](https://github.com/remarkjs/remark-images)
-    — add a simpler image syntax
-*   [`remark-embed-images`](https://github.com/remarkjs/remark-embed-images)
-    — embed local images as data URIs, inlining files as base64-encoded values
+* [`remark-images`](https://github.com/remarkjs/remark-images)
+  — add a simpler image syntax
+* [`remark-embed-images`](https://github.com/remarkjs/remark-embed-images)
+  — embed local images as data URIs, inlining files as base64-encoded values
 
 ## Contribute
 
